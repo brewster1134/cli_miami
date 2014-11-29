@@ -1,0 +1,16 @@
+# coding: utf-8
+Gem::Specification.new do |s|
+  s.author = 'Ryan Brewster'
+  s.date = '2014-11-28'
+  s.email = 'brewster1134@gmail.com'
+  s.files = ["Gemfile", "Gemfile.lock", "Guardfile", "README.md", "lib/cli_miami.rb", "yuyi_menu", ".gitignore", ".rspec", ".travis.yml"]
+  s.homepage = 'https://github.com/brewster1134/cli_miami'
+  s.license = 'MIT'
+  s.name = 'cli_miami'
+  s.summary = 'A feature rich alternative for `gets` and `puts` for your cli interface'
+  s.version = '0.0.1'
+  s.add_development_dependency 'guard', '~> 2.6.1'
+  s.add_development_dependency 'guard-rspec', '~> 4.3.1'
+  s.add_development_dependency 'rspec', '~> 3.1.0'
+  s.add_development_dependency 'terminal-notifier-guard', '~> 1.5.3'
+end
