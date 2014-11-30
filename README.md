@@ -1,6 +1,10 @@
 # CLI Miami
 A feature rich alternative for `gets` and `puts` for your cli interface
 
+```shell
+gem install cli_miami
+```
+
 _Gemfile_
 ```ruby
 # This exposes the shortened API for `A.sk` and `S.ay`
@@ -62,8 +66,7 @@ overwrite:  => [boolean]            # True if you want the next line to overwrit
 ### Development & Testing
 
 ```shell
-gem install cli_miami
-yuyi -m https://raw.githubusercontent.com/brewster1134/turple/master/yuyi_menu
+yuyi -m https://raw.githubusercontent.com/brewster1134/CLI-Miami/master/yuyi_menu
 bundle install
 bundle exec guard
 ```
