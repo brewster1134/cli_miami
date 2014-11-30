@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'colorize', '~> 0.7'
+gem 'term-ansicolor', '~> 1.3'
 
 group :test do
   gem 'guard', '~> 2.6'
