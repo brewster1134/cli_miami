@@ -5,6 +5,8 @@
 require 'readline'
 
 class CliMiami::A
+  @@prompt = '>>> '
+
   # See documentation for CliMiami::S.ay
   # The same options are accepted
   #
@@ -16,21 +18,17 @@ class CliMiami::A
     CliMiami::S.ay question, options
 
     output = if options[:readline]
-      Readline.readline(@prompt).chomp('/')
+      Readline.readline(@@prompt).chomp('/')
     else
-      CliMiami::S.ay @prompt, :newline => false
+      CliMiami::S.ay @@prompt, :newline => false
       $stdin.gets
     end.rstrip
 
-    CliMiami::S.ay
     yield output if block
   end
 
-  def self.prompt
-    @prompt ||= '>>> '
-  end
-
+  def self.prompt; @@prompt; end
   def self.prompt= prompt
-    @prompt = prompt
+    @@prompt = prompt
   end
 end
