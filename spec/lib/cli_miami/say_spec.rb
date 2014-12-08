@@ -63,15 +63,22 @@ describe CliMiami::S do
     end
 
     context 'with preset' do
-      it 'should apply preset' do
-        S.set_preset :foo, {
+      before do
+        S.set_preset :preset_symbol, {
           :color => :blue,
           :bgcolor => :white,
           :style => :underline
         }
+      end
 
+      it 'should apply preset as symbol' do
         expect($stdout).to receive(:puts).with "\e[4m\e[47m\e[34mpreset\e[0m\e[0m\e[0m"
-        S.ay 'preset', :foo
+        S.ay 'preset', :preset_symbol
+      end
+
+      it 'should apply preset as option' do
+        expect($stdout).to receive(:puts).with "\e[4m\e[47m\e[34mpreset\e[0m\e[0m\e[0m"
+        S.ay 'preset', :preset => :preset_symbol
       end
     end
   end
