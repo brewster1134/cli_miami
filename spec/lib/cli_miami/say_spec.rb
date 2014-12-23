@@ -10,6 +10,10 @@ describe CliMiami::S do
       allow($stdout).to receive(:puts).and_call_original
     end
 
+    it 'should not accept no arguments' do
+      expect{S.ay 'no arguments'}.to_not raise_error
+    end
+
     context 'with options' do
       it 'should accept color' do
         expect($stdout).to receive(:puts).with "\e[31mcolor\e[0m"
@@ -19,21 +23,6 @@ describe CliMiami::S do
       it 'should accept bgcolor' do
         expect($stdout).to receive(:puts).with "\e[41mbgcolor\e[0m"
         S.ay 'bgcolor', :bgcolor => :red
-      end
-
-      it 'should accept style' do
-        expect($stdout).to receive(:puts).with "\e[4mstyle\e[0m"
-        S.ay 'style', :style => :underline
-      end
-
-      it 'should apply bright style to color' do
-        expect($stdout).to receive(:puts).with "\e[91mbright\e[0m"
-        S.ay 'bright', :color => :red, :style => :bright
-      end
-
-      it 'should accept multiple styles' do
-        expect($stdout).to receive(:puts).with "\e[4m\e[1m\e[91mmultiple\e[0m\e[0m\e[0m"
-        S.ay 'multiple', :color => :red, :style => [:bright, :bold, :underline]
       end
 
       it 'should accept justify / padding' do
@@ -60,11 +49,28 @@ describe CliMiami::S do
         expect($stdout).to receive(:print).with "overwrite\r"
         S.ay 'overwrite', :overwrite => true
       end
+
+      context 'with style' do
+        it 'should accept style' do
+          expect($stdout).to receive(:puts).with "\e[4mstyle\e[0m"
+          S.ay 'style', :style => :underline
+        end
+
+        it 'should apply bright style to color' do
+          expect($stdout).to receive(:puts).with "\e[91mbright\e[0m"
+          S.ay 'bright', :color => :red, :style => :bright
+        end
+
+        it 'should accept multiple styles' do
+          expect($stdout).to receive(:puts).with "\e[4m\e[1m\e[91mmultiple\e[0m\e[0m\e[0m"
+          S.ay 'multiple', :color => :red, :style => [:bright, :bold, :underline]
+        end
+      end
     end
 
     context 'with preset' do
       before do
-        S.set_preset :preset_symbol, {
+        CliMiami.set_preset :preset_symbol, {
           :color => :blue,
           :bgcolor => :white,
           :style => :underline
@@ -80,20 +86,6 @@ describe CliMiami::S do
         expect($stdout).to receive(:puts).with "\e[4m\e[47m\e[34mpreset\e[0m\e[0m\e[0m"
         S.ay 'preset', :preset => :preset_symbol
       end
-    end
-  end
-
-  describe '.set_preset' do
-    it 'should raise an error if invalid options' do
-      expect{S.set_preset(:foo, :bar)}.to raise_error
-    end
-
-    it 'should set new preset' do
-      S.set_preset :foo, {
-        :bar => :baz
-      }
-
-      expect(S.presets[:foo]).to eq({ :bar => :baz })
     end
   end
 end

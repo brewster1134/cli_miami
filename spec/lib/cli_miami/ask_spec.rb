@@ -33,6 +33,12 @@ describe CliMiami::A do
       end
     end
 
+    it 'should accept presets' do
+      A.sk @q, :success do |response|
+        expect(response).to eq 'user gets'
+      end
+    end
+
     context 'when using readline' do
       it 'should call readline with prompt' do
         expect(Readline).to receive(:readline).with CliMiami::A.prompt

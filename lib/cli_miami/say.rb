@@ -8,27 +8,13 @@ class String
 end
 
 class CliMiami::S
-
-  # default presets
-  @@presets = {
-    :fail => {
-      :color => :red,
-      :style => :bold
-    },
-    :warn => {
-      :color => :yellow,
-      :style => :bold
-    },
-    :success => {
-      :color => :green,
-      :style => :bold
-    }
-  }
-
-  # By preset...
-  # [symbol]  Uses defined preset
-
-  # By options...
+  #
+  # @param options [Symbol or Hash] options can be preset symbol, or a hash of options.
+  #
+  # By preset [Symbol[...
+  # [symbol]  Uses defined preset name
+  #
+  # By options [Hash]...
   # color:        => [symbol]             See README for ansi color codes
   # bgcolor:      => [symbol]             See README for ansi color codes
   # style:        => [symbol]             See README for ansi style codes
@@ -38,7 +24,9 @@ class CliMiami::S
   # newline:      => [boolean]            True if you want a newline after the output
   # overwrite:    => [boolean]            True if you want the next line to overwrite the current line
   #
-  def self.ay text = '', options
+  # @return
+  #
+  def self.ay text = '', options = {}
     # set default options
     @options = {
       :style => [],
@@ -47,14 +35,14 @@ class CliMiami::S
 
     # merge preset options
     if options.is_a? Symbol
-      @options.merge! @@presets[options]
+      @options.merge! CliMiami.presets[options]
     elsif preset = options.delete(:preset)
-      @options.merge! @@presets[preset]
+      @options.merge! CliMiami.presets[preset]
     end
 
     # merge remaining options
     if options.is_a? Hash
-      @options.merge! options || {}
+      @options.merge! options
     end
 
     # convert single style into an array for processing
@@ -103,16 +91,6 @@ class CliMiami::S
     else
       $stdout.puts text
     end
-  end
-
-  # Returns all presets
-  def self.presets
-    @@presets
-  end
-
-  # Create a new custom preset
-  def self.set_preset type, options
-    raise 'Preset must be a hash of options' unless options.is_a? Hash
-    @@presets[type] = options
+    return 'fun!'
   end
 end
