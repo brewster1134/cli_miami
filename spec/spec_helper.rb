@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require 'cli_miami'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

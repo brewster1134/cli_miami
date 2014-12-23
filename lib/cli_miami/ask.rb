@@ -13,7 +13,7 @@ class CliMiami::A
   def self.sk question, options = {}, &block
     # set default options
     @options = {
-      :readline => false,
+      :readline => false
     }
 
     # merge preset options

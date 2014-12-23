@@ -1,5 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/cli_miami.svg)](http://badge.fury.io/rb/cli_miami)
 [![Build Status](https://travis-ci.org/brewster1134/CLI-Miami.svg)](https://travis-ci.org/brewster1134/CLI-Miami)
+[![Coverage Status](https://coveralls.io/repos/brewster1134/CLI-Miami/badge.png)](https://coveralls.io/r/brewster1134/CLI-Miami)
 
 # CLI Miami
 A feature rich alternative for `gets` and `puts` for your cli interface
