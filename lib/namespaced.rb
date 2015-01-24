@@ -7,16 +7,13 @@ class CliMiami
   # default presets
   @@presets = {
     :fail => {
-      :color => :red,
-      :style => :bold
+      :color => :red
     },
     :warn => {
-      :color => :yellow,
-      :style => :bold
+      :color => :yellow
     },
     :success => {
-      :color => :green,
-      :style => :bold
+      :color => :green
     }
   }
 
