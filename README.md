@@ -26,6 +26,19 @@ _* see supported options below_
 S.ay 'Hello World', :color => :red
 ```
 
+Sometimes you want to have multiple styles on a single line.  There are 2 ways to do this.
+
+The multi-line way using `:newline => false`
+```ruby
+S.ay 'Hello ', :color => :red, :newline => false
+S.ay 'World', :color => :blue
+```
+
+Or on a single line using ANSI codes as methods. *All the ANSI color and style codes listed below can be used*
+```ruby
+S.ay "#{'Hello'.red} #{'World'.blue}"
+```
+
 #### A.sk
 `A.sk` accepts the same arguments as `S.say`, with additional support for a block that passes the users response
 
@@ -37,8 +50,6 @@ end
 
 #### Options
 Both `S.ay` and `A.sk` suport the same options
-
-https://github.com/flori/term-ansicolor/tree/master/lib/term/ansicolor/attribute
 
 ```ruby
 color:      => [symbol]             # See ansi color codes below
