@@ -37,7 +37,12 @@ class CliMiami::A
       $stdin.gets
     end.rstrip
 
-    yield output if block
+    # return response if no block is passed
+    if block
+      yield output
+    else
+      return output
+    end
   end
 
 private
