@@ -27,6 +27,8 @@ class CliMiami::S
   # @return
   #
   def self.ay text = '', options = {}
+    original_text = text
+
     # set default options
     @options = {
       :style => [],
@@ -91,6 +93,8 @@ class CliMiami::S
     else
       $stdout.puts text
     end
-    return 'fun!'
+
+    # return original text
+    return original_text
   end
 end
