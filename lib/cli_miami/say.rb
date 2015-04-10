@@ -27,7 +27,8 @@ class CliMiami::S
   # @return
   #
   def self.ay text = '', options = {}
-    original_text = text
+    # backup text and convert it to a string
+    original_text = text = text.to_s
 
     # set default options
     @options = {

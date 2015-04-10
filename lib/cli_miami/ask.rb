@@ -38,7 +38,7 @@ class CliMiami::A
     end.rstrip
 
     # return response if no block is passed
-    if block
+    if block_given?
       yield output
     else
       return output
