@@ -21,7 +21,7 @@ describe CliMiami::A do
     end
 
     it 'should call S.ay multiple times' do
-      expect(CliMiami::S).to receive(:ay).with(@q, :readline => false)
+      expect(CliMiami::S).to receive(:ay).with(@q, {})
       expect(CliMiami::S).to receive(:ay).with(CliMiami::A.prompt, hash_including({ :newline => false }))
 
       A.sk @q

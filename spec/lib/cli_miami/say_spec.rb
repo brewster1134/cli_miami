@@ -10,6 +10,10 @@ describe CliMiami::S do
       allow($stdout).to receive(:puts).and_call_original
     end
 
+    it 'should return the original text' do
+      expect(S.ay('foo', :color => :red, :indent => 2)).to eq 'foo'
+    end
+
     it 'should not accept no arguments' do
       expect{S.ay 'no arguments'}.to_not raise_error
     end
