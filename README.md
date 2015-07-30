@@ -4,7 +4,6 @@
 [![build](https://travis-ci.org/brewster1134/CLI-Miami.svg?branch=master)](https://travis-ci.org/brewster1134/CLI-Miami)
 [![coverage](https://coveralls.io/repos/brewster1134/CLI-Miami/badge.svg?branch=master)](https://coveralls.io/r/brewster1134/CLI-Miami?branch=master)
 [![code climate](https://codeclimate.com/github/brewster1134/CLI-Miami/badges/gpa.svg)](https://codeclimate.com/github/brewster1134/CLI-Miami)
-
 [![omniref](https://www.omniref.com/github/brewster1134/CLI-Miami.png)](https://www.omniref.com/github/brewster1134/CLI-Miami)
 
 # CLI Miami

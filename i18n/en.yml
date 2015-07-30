@@ -1,0 +1,34 @@
+en:
+  cli_miami:
+    # CliMiami core library strings
+    core:
+      empty: '[EMPTY]'
+      enter_end_value: 'Enter end value'
+      enter_start_value: 'Enter starting value'
+      enter_value_for: 'Enter a value for %{key}'
+      no_description: No description provided
+
+    errors:
+      # generic error type messages
+      convert: "`%{value}` cannot be converted to `%{type}`. Allowed values are: `%{allowed_values}` (%{description})"
+      length: "`%{value}` has a length of %{value_length}, but must be between %{min} and %{max} . Allowed values are: `%{allowed_values}` (%{description})"
+      regexp: "`%{value}` does not match the required format. Allowed values are: `%{allowed_values}` (%{description})"
+      type: "Unknown type %{type}"
+
+      # specific value type messages
+      # these messages will take precedence over the general messages above
+      array:
+        length: "Your array (%{value}) has %{value_length} items, but needs between %{allowed_values} (%{description})"
+      boolean:
+      file:
+        validate: "`%{value}` is not a valid path. Allowed values are: `%{allowed_values}` (%{description})"
+      fixnum:
+        length: "`%{value}` must be between %{min} and %{max} . Allowed values are: `%{allowed_values}` (%{description})"
+      float:
+        length: "`%{value}` must be between %{min} and %{max} . Allowed values are: `%{allowed_values}` (%{description})"
+      hash:
+        length: "Your object (%{value}) has %{value_length} items, but needs between %{allowed_values} (%{description})"
+        keys: "The object has `%{value}` set, but is missing `%{keys}`. Allowed values are: `%{allowed_values}` (%{description})"
+      range:
+      string:
+      symbol:

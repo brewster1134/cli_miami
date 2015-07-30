@@ -1,11 +1,14 @@
 require 'coveralls'
 Coveralls.wear!
 require 'cli_miami'
+require 'i18n'
+
+I18n.load_path += Dir[File.expand_path("#{File.dirname(__FILE__)}/fixtures/i18n.yml")]
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-# The settings below are suggested to provide a good initial experience
-# with RSpec, but feel free to customize to your heart's content.
+  # The settings below are suggested to provide a good initial experience
+  # with RSpec, but feel free to customize to your heart's content.
 
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
@@ -62,5 +65,19 @@ RSpec.configure do |config|
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
+  end
+
+  config.before do
+    allow($stdout).to receive(:print)
+    allow($stdout).to receive(:puts)
+
+    # uncomment the following lines to enable debugging
+    # allow($stdout).to receive(:print).and_call_original
+    # allow($stdout).to receive(:puts).and_call_original
+  end
+
+  config.after do
+    allow($stdout).to receive(:print).and_call_original
+    allow($stdout).to receive(:puts).and_call_original
   end
 end

@@ -7,6 +7,6 @@
 # the core initilization runs from `namespaced.rb`
 require 'namespaced'
 
-# create alias classes to support `A.sk` and `S.ay`
+# create alias classes to support `A.sk` and `S.ay` syntax
 A = CliMiami::A
 S = CliMiami::S
