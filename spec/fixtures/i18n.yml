@@ -1,0 +1,36 @@
+en:
+  cli_miami:
+    errors:
+      spec: generic error
+
+      type:
+        spec: "type: %{value} - %{allowed_values}"
+        nested:
+          spec: nested spec
+
+      array:
+        spec: "array: %{value} - %{allowed_values}"
+
+      boolean:
+        spec: "boolean: %{value} - %{allowed_values}"
+
+      file:
+        spec: "file: %{value} - %{allowed_values}"
+
+      fixnum:
+        spec: "fixnum: %{value} - %{allowed_values}"
+
+      float:
+        spec: "float: %{value} - %{allowed_values}"
+
+      hash:
+        spec: "hash: %{value} - %{allowed_values}"
+
+      range:
+        spec: "range: %{value} - %{allowed_values}"
+
+      string:
+        spec: "string: %{value} - %{allowed_values}"
+
+      symbol:
+        spec: "symbol: %{value} - %{allowed_values}"

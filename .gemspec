@@ -1,18 +1,26 @@
 # coding: utf-8
 Gem::Specification.new do |s|
   s.author = 'Ryan Brewster'
-  s.date = '2014-12-22'
+  s.date = '2016-02-26'
   s.email = 'brewster1134@gmail.com'
-  s.files = ["Gemfile", "Gemfile.lock", "Guardfile", "README.md", "lib/cli_miami.rb", "lib/namespaced.rb", "lib/cli_miami/ask.rb", "lib/cli_miami/say.rb", "yuyi_menu", ".gitignore", ".rspec", ".travis.yml"]
-  s.homepage = 'https://github.com/brewster1134/cli_miami'
-  s.license = 'MIT'
+  s.files = Dir['i18n/*.yml', 'lib/**/*.rb', 'README.md']
+  s.homepage = 'https://github.com/brewster1134/CLI-Miami'
+  s.license = 'WTFPL'
   s.name = 'cli_miami'
+  s.required_ruby_version = Gem::Requirement.new '~> 2.0.0p247'
   s.summary = 'A feature rich alternative for `gets` and `puts` for your cli interface'
-  s.version = '0.0.9'
-  s.required_ruby_version = '>= 1.9'
+  s.test_files =  Dir['spec/**/*']
+  s.version = '1.0.0.pre'
+
+  s.add_runtime_dependency 'activesupport', '~> 4.2'
+  s.add_runtime_dependency 'i18n', '~> 0.7'
   s.add_runtime_dependency 'term-ansicolor', '~> 1.3'
+  s.add_development_dependency 'coveralls', '~> 0.7'
   s.add_development_dependency 'guard', '~> 2.6'
+  s.add_development_dependency 'guard-bundler', '~> 2.1'
+  s.add_development_dependency 'guard-rubocop', '~> 1.2'
   s.add_development_dependency 'guard-rspec', '~> 4.3'
+  s.add_development_dependency 'listen', '~> 3.0.6'
   s.add_development_dependency 'rspec', '~> 3.1'
   s.add_development_dependency 'terminal-notifier-guard', '~> 1.5'
 end
