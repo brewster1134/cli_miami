@@ -14,6 +14,15 @@ class CliMiami
   # Create a new custom preset
   def self.set_preset type, options
     raise ArgumentError, 'Preset must be a hash of options' unless options.is_a? Hash
+
+    # extend preset if it exists
+    extend_preset = options.delete(:preset)
+    if extend_preset && @@presets[extend_preset.to_sym]
+      extend_preset_options = @@presets[extend_preset.to_sym]
+      options = extend_preset_options.merge! options
+    end
+
+    # set options to global var
     @@presets[type] = options
   end
 

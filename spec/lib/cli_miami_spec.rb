@@ -12,6 +12,21 @@ describe CliMiami do
 
       expect(subject.class_variable_get(:@@presets)[:foo]).to eq(bar: :baz)
     end
+
+    it 'should extend an existing preset' do
+      subject.set_preset :foo,
+        color: :red,
+        bg_color: :blue
+
+      subject.set_preset :bar,
+        preset: :foo,
+        bg_color: :green
+
+      expect(subject.class_variable_get(:@@presets)[:bar]).to eq(
+        color: :red,
+        bg_color: :green
+      )
+    end
   end
 
   describe '.get_options' do

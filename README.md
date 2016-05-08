@@ -1,4 +1,4 @@
-[![gem version](https://badge.fury.io/rb/CLI-Miami.svg)](https://rubygems.org/gems/CLI-Miami)
+[![gem version](https://badge.fury.io/rb/cli_miami.svg)](https://badge.fury.io/rb/cli_miami)
 [![dependencies](https://gemnasium.com/brewster1134/CLI-Miami.svg)](https://gemnasium.com/brewster1134/CLI-Miami)
 [![docs](http://inch-ci.org/github/brewster1134/CLI-Miami.svg?branch=master)](http://inch-ci.org/github/brewster1134/CLI-Miami)
 [![build](https://travis-ci.org/brewster1134/CLI-Miami.svg?branch=master)](https://travis-ci.org/brewster1134/CLI-Miami)
