@@ -7,7 +7,6 @@ en:
       enter_end_value: Enter the maximum value
       enter_start_value: Enter the minimum value
       enter_value_for: "Enter a value for %{key}"
-      no_description: No description provided
 
       # TYPE SPECIFIC MESSAGES
       multiple_choice:
@@ -17,27 +16,27 @@ en:
 
     errors:
       # generic error type messages
-      convert: "%{value} cannot be converted to a %{type} (%{description})"
-      length: "%{value} has a length of %{value_length}, but must be between %{allowed_values} (%{description})"
-      regexp: "%{value} does not match the required format of %{allowed_values} (%{description})"
+      convert: "%{value} cannot be converted to a %{type} %{description}"
+      length: "%{value} has a length of %{value_length}, but must be between %{allowed_values} %{description}"
+      regexp: "%{value} does not match the required format of %{allowed_values} %{description}"
       type: "Unknown type %{type}"
 
       # specific value type messages
       # these messages will take precedence over the general messages above
       array:
-        length: "You entered %{value_length} items, but you need between %{allowed_values} (%{description})"
+        length: "You entered %{value_length} items, but you need between %{allowed_values} %{description}"
       boolean:
       file:
-        validate: "%{value} is not a valid path (%{description})"
+        validate: "%{value} is not a valid path %{description}"
       fixnum:
-        length: "%{value} is invalid. Enter a number between %{allowed_values} (%{description})"
+        length: "%{value} is invalid. Enter a number between %{allowed_values} %{description}"
       float:
-        length: "%{value} is invalid. Enter a number between %{allowed_values} (%{description})"
+        length: "%{value} is invalid. Enter a number between %{allowed_values} %{description}"
       hash:
-        length: "You entered %{value_length} items, but you need between %{allowed_values} (%{description})"
-        keys: "You are missing values for %{keys} (%{description})"
+        length: "You entered %{value_length} items, but you need between %{allowed_values} %{description}"
+        keys: "You are missing values for %{keys} %{description}"
       multiple_choice:
-        length: "You have selected %{value_length} options, but you need between %{allowed_values} (%{description})"
+        length: "You have selected %{value_length} options, but you need between %{allowed_values} %{description}"
       range:
       string:
       symbol:

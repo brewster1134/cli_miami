@@ -7,7 +7,7 @@ require 'active_support/core_ext/string/inflections'
 require 'i18n'
 require 'readline'
 
-# core object overrides
+# open Hash class
 #
 class Hash
   def to_cli_miami_string
@@ -17,13 +17,15 @@ class Hash
   end
 end
 
+# open String class
+#
 class String
   def method_missing method, *args
     method_string = method.to_s.dup
 
     if method_string.slice! 'cli_miami_'
       preset = CliMiami.presets[method_string.to_sym]
-      options = preset.merge (args[0] || {})
+      options = preset.merge args[0] || {}
       CliMiami::S.ay self, options
     else
       super
@@ -159,7 +161,7 @@ module CliMiami
 
     # set defaults
     options.reverse_merge!(
-      description: I18n.t('cli_miami.core.no_description'),
+      description: nil,
       max: Float::INFINITY,
       min: options.delete(:required) ? 1 : 0,
       newline: true,

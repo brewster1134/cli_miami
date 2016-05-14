@@ -21,11 +21,11 @@ private
   def initialize question, options
     options = CliMiami.get_options options
 
-    # add description to question
-    question << ' (' << options[:description] << ')'
-
     # display question
     CliMiami::S.ay question, options.merge(preset: :cli_miami_instruction)
+
+    # display description
+    CliMiami::S.ay options[:description], preset: :cli_miami_instruction_sub, indent: 4 if options[:description]
 
     # request given type to user
     @value = request_type options

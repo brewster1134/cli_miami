@@ -105,6 +105,15 @@ private
   #
   def i18n_lookup options, *keys
     i18n_string = keys.flatten.compact.each(&:to_s).join('.')
-    I18n.t i18n_string, options if I18n.exists? i18n_string
+
+    # check if value exists, and translate it
+    if I18n.exists? i18n_string
+      # format description for i18n messages
+      if options[:description]
+        options[:description] = ' (' << options[:description] << ')'
+      end
+
+      I18n.t i18n_string, options
+    end
   end
 end
