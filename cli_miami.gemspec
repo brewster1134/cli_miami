@@ -1,4 +1,6 @@
 # coding: utf-8
+require 'date'
+
 Gem::Specification.new do |s|
   s.author = 'Ryan Brewster'
   s.date = Date.today.to_s
@@ -12,7 +14,7 @@ Gem::Specification.new do |s|
 
   # VERSIONS
   #
-  s.version = '1.0.4.pre'
+  s.version = '1.0.5.pre'
 
   s.required_ruby_version = Gem::Requirement.new '>= 2.0.0p247'
 
