@@ -1,4 +1,22 @@
 describe CliMiami do
+  describe String do
+    before do
+      CliMiami.set_preset :string_spec,
+        color: :green,
+        bgcolor: :blue
+    end
+
+    it 'should create methods for calling presets' do
+      expect($stdout).to receive(:puts).with "\e[44m\e[32mSTRING!\e[0m\e[0m"
+      'STRING!'.cli_miami_string_spec
+    end
+
+    it 'should extend presets' do
+      expect($stdout).to receive(:puts).with "\e[43m\e[32mSTRING!\e[0m\e[0m"
+      'STRING!'.cli_miami_string_spec bgcolor: :yellow
+    end
+  end
+
   describe '.set_preset' do
     it 'should raise an error if invalid options' do
       expect { subject.set_preset(:foo, :bar) }.to raise_error ArgumentError
@@ -14,15 +32,15 @@ describe CliMiami do
     it 'should extend an existing preset' do
       subject.set_preset :foo,
         color: :red,
-        bg_color: :blue
+        bgcolor: :blue
 
       subject.set_preset :bar,
         preset: :foo,
-        bg_color: :green
+        bgcolor: :green
 
       expect(subject.class_variable_get(:@@presets)[:bar]).to eq(
         color: :red,
-        bg_color: :green
+        bgcolor: :green
       )
     end
   end
@@ -31,7 +49,7 @@ describe CliMiami do
     before do
       subject.set_preset :foo,
         color: 'red',
-        bg_color: 'blue'
+        bgcolor: 'blue'
     end
 
     it 'should handle `required`' do
@@ -47,7 +65,7 @@ describe CliMiami do
         it 'should return the preset options' do
           expect(subject.get_options(:foo)).to include(
             color: 'red',
-            bg_color: 'blue'
+            bgcolor: 'blue'
           )
         end
       end
@@ -64,22 +82,22 @@ describe CliMiami do
         it 'should return the preset options' do
           expect(subject.get_options(preset: :foo)).to include(
             color: 'red',
-            bg_color: 'blue'
+            bgcolor: 'blue'
           )
         end
 
         it 'should extend preset options with additional passed options' do
           expect(subject.get_options(preset: :foo, style: 'bold')).to include(
             color: 'red',
-            bg_color: 'blue',
+            bgcolor: 'blue',
             style: ['bold']
           )
         end
 
         it 'should override preset options with additional passed options' do
-          expect(subject.get_options(preset: :foo, bg_color: 'green')).to include(
+          expect(subject.get_options(preset: :foo, bgcolor: 'green')).to include(
             color: 'red',
-            bg_color: 'green'
+            bgcolor: 'green'
           )
         end
       end

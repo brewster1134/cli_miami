@@ -17,6 +17,20 @@ class Hash
   end
 end
 
+class String
+  def method_missing method, *args
+    method_string = method.to_s.dup
+
+    if method_string.slice! 'cli_miami_'
+      preset = CliMiami.presets[method_string.to_sym]
+      options = preset.merge (args[0] || {})
+      CliMiami::S.ay self, options
+    else
+      super
+    end
+  end
+end
+
 # i18n
 #
 # load yml locales included in the cli miami gem
@@ -104,6 +118,7 @@ module CliMiami
   # rubocop:enable Style/ClassVars
 
   # Create a new custom preset
+  #
   def self.set_preset type, options
     raise ArgumentError, 'Preset must be a hash of options' unless options.is_a? Hash
 
@@ -116,6 +131,12 @@ module CliMiami
 
     # set options to global var
     @@presets[type] = options
+  end
+
+  # getter for the presets
+  #
+  def self.presets
+    @@presets
   end
 
   # build an options hash from preset options and/or additional options
