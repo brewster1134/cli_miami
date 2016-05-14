@@ -15,11 +15,11 @@ gem install cli_miami
 
 _Gemfile_
 ```ruby
-# This exposes the shortened API for `A.sk` and `S.ay`
+# For the name-spaced methods CliMiami::A.sk & CliMiami::S.ay...
 gem 'cli_miami'
 
-# if you need the API to be namespaced (`CliMiami::A.sk`, `CliMiami::S.ay`)
-gem 'cli_miami', :require => :namespaced
+# For the friendlier global methods A.sk & S.ay...
+gem 'cli_miami', require: 'cli_miami/global'
 ```
 
 #### S.ay
