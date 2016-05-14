@@ -1,7 +1,7 @@
 # coding: utf-8
 Gem::Specification.new do |s|
   s.author = 'Ryan Brewster'
-  s.date = '2016-02-26'
+  s.date = Date.today.to_s
   s.email = 'brewster1134@gmail.com'
   s.files = Dir['i18n/*.yml', 'lib/**/*.rb', 'README.md']
   s.homepage = 'https://github.com/brewster1134/CLI-Miami'
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
   # VERSIONS
   #
-  s.version = '1.0.3.pre'
+  s.version = '1.0.4.pre'
 
   s.required_ruby_version = Gem::Requirement.new '>= 2.0.0p247'
 
