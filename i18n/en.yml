@@ -10,7 +10,6 @@ en:
 
       # TYPE SPECIFIC MESSAGES
       multiple_choice:
-        already_selected: "Option %{choice} has already been selected"
         prompt: 'Choose one of the following options:'
         selected_choices: Selected Options
 
@@ -37,6 +36,7 @@ en:
         keys: "You are missing values for %{keys} %{description}"
       multiple_choice:
         length: "You have selected %{value_length} options, but you need between %{allowed_values} %{description}"
+        delete_required_key: "You cannot delete the required key %{key}"
       range:
       string:
       symbol:

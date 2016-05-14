@@ -86,7 +86,7 @@ private
   alias_method :request_string, :request_until_valid
   alias_method :request_symbol, :request_until_valid
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def request_array options
     array = []
     value_options = CliMiami.get_options(options[:value_options] || {})
@@ -96,9 +96,16 @@ private
     while array.length < options[:max]
       response = request_until_valid value_options, true
 
+      # user attempting to finish entering items
       if response.empty?
         break if CliMiami::Validation.new(array, options).valid?
         redo
+
+      # remove item if user enters it twice
+      elsif array.include? response
+        array.delete response
+
+      # add response to the list
       else
         array << response
       end
@@ -109,8 +116,9 @@ private
 
     array
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
-  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   def request_multiple_choice options
     selected_choices = nil
     selected_choice_indexes = []
@@ -143,14 +151,12 @@ private
         # convert human readable response to array index
         response_index = response - 1
 
-        # prevent the same option from being added multiple times
-        if selected_choice_indexes.include? response_index
-          CliMiami::S.ay I18n.t('cli_miami.core.multiple_choice.already_selected', choice: response), :cli_miami_fail
-          redo
-        end
-
         # add choice to array
-        selected_choice_indexes << response_index
+        if selected_choice_indexes.include? response_index
+          selected_choice_indexes.delete response_index
+        else
+          selected_choice_indexes << response_index
+        end
       end
 
       # update user
@@ -164,9 +170,9 @@ private
 
     selected_choices
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
-  # rubocop:disable Metrics/AbcSize, Metrics/BlockNesting, Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/AbcSize, Metrics/BlockNesting, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   def request_hash options
     hash = {}
     options[:keys] ||= []
@@ -202,9 +208,24 @@ private
           break if CliMiami::Validation.new(hash, options).valid?
           redo
         else
-          # request value
           CliMiami::S.ay I18n.t('cli_miami.core.enter_value_for', key: user_key), :cli_miami_instruction
-          hash[user_key] = request_until_valid value_options, true
+
+          # request value
+          user_value = request_until_valid value_options, true
+
+          if user_value.empty?
+            if options[:keys].include? user_key
+              # prevent deleting required keys
+              CliMiami::S.ay I18n.t('cli_miami.errors.multiple_choice.delete_required_key', key: user_key), :cli_miami_fail
+              redo
+            else
+              # delete user-specified key
+              hash.delete user_key
+            end
+          else
+            # set user-defined key
+            hash[user_key] = user_value
+          end
         end
       end
 
@@ -213,9 +234,9 @@ private
 
     hash
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/BlockNesting, Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/AbcSize, Metrics/BlockNesting, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
-  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   def request_range options
     start_value = nil
     end_value = nil
@@ -246,5 +267,5 @@ private
       request_range options
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 end

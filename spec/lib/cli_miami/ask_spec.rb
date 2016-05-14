@@ -35,6 +35,12 @@ describe CliMiami::A do
       expect(ask.value).to eq %w(foo bar)
     end
 
+    it 'should allow user to remove entered values' do
+      allow($stdin).to receive(:gets).and_return 'foo', 'bar', 'foo', ''
+      ask = CliMiami::A.sk @q, type: :array
+      expect(ask.value).to eq %w(bar)
+    end
+
     it 'should prevent user from entering less than the minimum' do
       allow($stdin).to receive(:gets).and_return 'foo', '', 'bar', ''
       ask = CliMiami::A.sk @q, type: :array, min: 2
@@ -49,6 +55,12 @@ describe CliMiami::A do
   end
 
   describe 'MULTIPLE_CHOICE' do
+    it 'should allow a user to remove selections' do
+      allow($stdin).to receive(:gets).and_return '1', '2', '1', ''
+      ask = CliMiami::A.sk @q, type: :multiple_choice, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 2']
+    end
+
     it 'should not allow a user to select less than the min amount of choices' do
       allow($stdin).to receive(:gets).and_return '2', '', '1', ''
       ask = CliMiami::A.sk @q, type: :multiple_choice, min: 2, choices: ['option 1', 'option 2', 'option 3']
@@ -78,15 +90,21 @@ describe CliMiami::A do
       ask = CliMiami::A.sk @q, type: :multiple_choice, choices: ['option 1', 'option 2', 'option 3']
       expect(ask.value).to eq ['option 3', 'option 1', 'option 2']
     end
-
-    it 'should not allow a user to select the same option twice' do
-      allow($stdin).to receive(:gets).and_return '2', '2', '1', ''
-      ask = CliMiami::A.sk @q, type: :multiple_choice, choices: ['option 1', 'option 2', 'option 3']
-      expect(ask.value).to eq ['option 2', 'option 1']
-    end
   end
 
   describe 'HASH' do
+    it 'should allow user to overwrite keys' do
+      allow($stdin).to receive(:gets).and_return 'foo1', '1', 'bar1', '2', 'foo1', '3', ''
+      ask = CliMiami::A.sk @q, type: :hash
+      expect(ask.value).to eq(foo1: '3', bar1: '2')
+    end
+
+    it 'should allow user to remove keys' do
+      allow($stdin).to receive(:gets).and_return 'foo1', '1', 'bar1', '2', 'foo1', '', ''
+      ask = CliMiami::A.sk @q, type: :hash
+      expect(ask.value).to eq(bar1: '2')
+    end
+
     it 'should allow user to enter keys & values until they enter an empty key string' do
       allow($stdin).to receive(:gets).and_return 'foo1', '1', 'bar1', '2', ''
       ask = CliMiami::A.sk @q, type: :hash
@@ -110,6 +128,12 @@ describe CliMiami::A do
         allow($stdin).to receive(:gets).and_return '1', 'bar4', '2', ''
         ask = CliMiami::A.sk @q, type: :hash, keys: [:foo4]
         expect(ask.value).to eq(foo4: '1', bar4: '2')
+      end
+
+      it 'should not allow user to delete required keys' do
+        allow($stdin).to receive(:gets).and_return 'foo1', 'foo', '', 'bar', 'bar1', ''
+        ask = CliMiami::A.sk @q, type: :hash, keys: [:foo]
+        expect(ask.value).to eq(foo: 'foo1', bar: 'bar1')
       end
     end
   end
