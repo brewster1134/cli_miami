@@ -51,33 +51,49 @@ module CliMiami::Core
   # keys:   type values allowed through the API
   # values: type used to validate internally in the Validation class
   TYPE_MAP = {
-    array:      :array,
-    boolean:    :boolean,
-    dir:        :file,
-    directory:  :file,
-    file:       :file,
-    fixnum:     :fixnum,
-    float:      :float,
-    folder:     :file,
-    hash:       :hash,
-    integer:    :fixnum,
-    list:       :array,
-    number:     :fixnum,
-    object:     :hash,
-    path:       :file,
-    range:      :range,
-    string:     :string,
-    symbol:     :symbol
+    array:            :array,
+    boolean:          :boolean,
+    dir:              :file,
+    directory:        :file,
+    file:             :file,
+    fixnum:           :fixnum,
+    float:            :float,
+    folder:           :file,
+    multiple_choice:  :multiple_choice,
+    hash:             :hash,
+    integer:          :fixnum,
+    list:             :array,
+    number:           :fixnum,
+    object:           :hash,
+    path:             :file,
+    range:            :range,
+    string:           :string,
+    symbol:           :symbol
   }.freeze
 
   # default presets
   # rubocop:disable Style/ClassVars
   @@presets = {
     cli_miami_fail: {
-      color: :red
+      indent: 2,
+      color: :red,
+      style: [:bold, :underline]
+    },
+    cli_miami_instruction: {
+      color: :green,
+      style: :bold
+    },
+    cli_miami_instruction_sub: {
+      indent: 2,
+      color: :green
     },
     cli_miami_success: {
-      color: :green
+      color: :green,
+      style: [:bold, :underline]
+    },
+    cli_miami_update: {
+      indent: 2,
+      color: :cyan
     }
   }
   # rubocop:enable Style/ClassVars

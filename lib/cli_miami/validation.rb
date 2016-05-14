@@ -71,6 +71,9 @@ private
     Float string
   end
 
+  # multiple choice strings are also integers
+  alias_method :convert_string_to_multiple_choice, :convert_string_to_fixnum
+
   def convert_string_to_range string, _options
     range_array = string.split('..').map { |i| Float(i) }.sort
 
@@ -171,6 +174,10 @@ private
     end
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+
+  def validate_multiple_choice selections, options
+    validate_length selections, selections.length, options
+  end
 
   def validate_range range, options
     range_diff = (range.max - range.min) + 1

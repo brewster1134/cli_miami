@@ -26,6 +26,9 @@ en:
       hash:
         spec: "hash: %{value} - %{allowed_values}"
 
+      multiple_choice:
+        spec: "multiple_choice: %{value} - %{allowed_values}"
+
       range:
         spec: "range: %{value} - %{allowed_values}"
 

@@ -48,6 +48,44 @@ describe CliMiami::A do
     end
   end
 
+  describe 'MULTIPLE_CHOICE' do
+    it 'should not allow a user to select less than the min amount of choices' do
+      allow($stdin).to receive(:gets).and_return '2', '', '1', ''
+      ask = CliMiami::A.sk @q, type: :multiple_choice, min: 2, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 2', 'option 1']
+    end
+
+    it 'should not allow a user to select more than the max amount of choices' do
+      allow($stdin).to receive(:gets).and_return '2', '1'
+      ask = CliMiami::A.sk @q, type: :multiple_choice, max: 2, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 2', 'option 1']
+    end
+
+    it 'should not allow a user to select an invalid choice' do
+      allow($stdin).to receive(:gets).and_return '4', '-4', '2'
+      ask = CliMiami::A.sk @q, type: :multiple_choice, max: 1, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 2']
+    end
+
+    it 'should allow a user to select an amount between the min and max' do
+      allow($stdin).to receive(:gets).and_return '3', '1', ''
+      ask = CliMiami::A.sk @q, type: :multiple_choice, min: 1, max: 3, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 3', 'option 1']
+    end
+
+    it 'should allow a user to select all the options' do
+      allow($stdin).to receive(:gets).and_return '3', '1', '2'
+      ask = CliMiami::A.sk @q, type: :multiple_choice, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 3', 'option 1', 'option 2']
+    end
+
+    it 'should not allow a user to select the same option twice' do
+      allow($stdin).to receive(:gets).and_return '2', '2', '1', ''
+      ask = CliMiami::A.sk @q, type: :multiple_choice, choices: ['option 1', 'option 2', 'option 3']
+      expect(ask.value).to eq ['option 2', 'option 1']
+    end
+  end
+
   describe 'HASH' do
     it 'should allow user to enter keys & values until they enter an empty key string' do
       allow($stdin).to receive(:gets).and_return 'foo1', '1', 'bar1', '2', ''

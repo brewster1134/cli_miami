@@ -25,7 +25,7 @@ private
     question << ' (' << options[:description] << ')'
 
     # display question
-    CliMiami::S.ay question, options
+    CliMiami::S.ay question, options.merge(preset: :cli_miami_instruction)
 
     # request given type to user
     @value = request_type options
@@ -45,7 +45,7 @@ private
   def request_type options
     send("request_#{options[:type]}", options)
   rescue
-    CliMiami::S.ay I18n.t('cli_miami.errors.type', options)
+    CliMiami::S.ay I18n.t('cli_miami.errors.type', options.merge(preset: :cli_miami_fail))
   end
 
   # for most types, a simple validation check is all that is needed
@@ -104,11 +104,67 @@ private
       end
 
       # update user
-      CliMiami::S.ay array.to_sentence, :cli_miami_success
+      CliMiami::S.ay array.to_sentence, :cli_miami_update
     end
 
     array
   end
+
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def request_multiple_choice options
+    selected_choices = nil
+    selected_choice_indexes = []
+
+    while selected_choice_indexes.length < options[:max]
+      # quit if all the options have been selected
+      break if selected_choice_indexes.length == options[:choices].length
+
+      # display options
+      CliMiami::S.ay
+      CliMiami::S.ay I18n.t('cli_miami.core.multiple_choice.prompt'), :cli_miami_instruction
+      options[:choices].each_with_index do |li, i|
+        # show already selected choices with a different color
+        choice_text = "#{(i + 1).to_s.rjust(3)}: #{li}"
+        choice_text_color = selected_choice_indexes.include?(i) ? :black : :cyan
+        CliMiami::S.ay choice_text, style: :bright, color: choice_text_color
+      end
+
+      # request a response from the user (return fixnum)
+      response = request_until_valid({
+        type: :fixnum,
+        min: 1,
+        max: options[:choices].length
+      }, true)
+
+      if response == ''
+        break if CliMiami::Validation.new(selected_choice_indexes, options).valid?
+        redo
+      else
+        # convert human readable response to array index
+        response_index = response - 1
+
+        # prevent the same option from being added multiple times
+        if selected_choice_indexes.include? response_index
+          CliMiami::S.ay I18n.t('cli_miami.core.multiple_choice.already_selected', choice: response), :cli_miami_fail
+          redo
+        end
+
+        # add choice to array
+        selected_choice_indexes << response_index
+      end
+
+      # update user
+      CliMiami::S.ay
+      CliMiami::S.ay I18n.t('cli_miami.core.multiple_choice.selected_choices'), :cli_miami_instruction_sub
+      selected_choices = selected_choice_indexes.map{ |i| options[:choices][i] }
+      selected_choices.each do |sc|
+        CliMiami::S.ay "• #{sc}", preset: :cli_miami_update, indent: 3
+      end
+    end
+
+    selected_choices
+  end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   # rubocop:disable Metrics/AbcSize, Metrics/BlockNesting, Metrics/PerceivedComplexity
   def request_hash options
@@ -126,7 +182,7 @@ private
           hash[key.to_sym] = request_until_valid value_options
 
           # update user
-          CliMiami::S.ay hash.to_s, :cli_miami_success
+          CliMiami::S.ay hash.to_s, :cli_miami_update
         end
 
         # set boolean so we know all required keys are set
@@ -147,12 +203,12 @@ private
           redo
         else
           # request value
-          CliMiami::S.ay I18n.t('cli_miami.core.enter_value_for', key: user_key), :cli_miami_success
+          CliMiami::S.ay I18n.t('cli_miami.core.enter_value_for', key: user_key), :cli_miami_instruction
           hash[user_key] = request_until_valid value_options, true
         end
       end
 
-      CliMiami::S.ay hash.to_s, :cli_miami_success
+      CliMiami::S.ay hash.to_s, :cli_miami_update
     end
 
     hash
@@ -167,13 +223,13 @@ private
 
     # get start value
     until (Float(start_value) rescue nil)
-      CliMiami::S.ay I18n.t('cli_miami.core.enter_start_value'), preset: :cli_miami_success, newline: false
+      CliMiami::S.ay I18n.t('cli_miami.core.enter_start_value'), preset: :cli_miami_instruction, newline: false
       start_value = request_until_valid range_value_options
     end
 
     # get end value
     until (Float(end_value) rescue nil)
-      CliMiami::S.ay I18n.t('cli_miami.core.enter_end_value'), preset: :cli_miami_success, newline: false
+      CliMiami::S.ay I18n.t('cli_miami.core.enter_end_value'), preset: :cli_miami_instruction, newline: false
       end_value = request_until_valid range_value_options
     end
 

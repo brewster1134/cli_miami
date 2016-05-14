@@ -69,7 +69,7 @@ private
       all_boolean_values = CliMiami::BOOLEAN_TRUE_VALUES + CliMiami::BOOLEAN_FALSE_VALUES
       all_boolean_values.to_sentence
 
-    when :fixnum, :float, :range, :string, :symbol
+    when :fixnum, :float, :multiple_choice, :range, :string, :symbol
       "#{options[:min]}-#{options[:max]}"
 
     when :regexp
@@ -83,21 +83,23 @@ private
 
   # build an i18n dot notation string to use for lookup in the language yaml
   #
-  # rubocop:disable Style/ClosingParenthesisIndentation
+  # rubocop:disable Metrics/MethodLength
   def i18n_lookup_keys options, *error_keys
     # check for type specific error first, then look for generic errors
-    i18n_lookup(options,
+    i18n_lookup(
+      options,
       'cli_miami',
       'errors',
       options[:type].to_s,
       *error_keys
-    ) || i18n_lookup(options,
+    ) || i18n_lookup(
+      options,
       'cli_miami',
       'errors',
       *error_keys
     )
   end
-  # rubocop:enable Style/ClosingParenthesisIndentation
+  # rubocop:enable Metrics/MethodLength
 
   # use i18n dot notation keys to lookup string
   #

@@ -59,7 +59,7 @@ Both `S.ay` and `A.sk` suport the same options
 color:      => [symbol]             # See ansi color codes below
 bgcolor:    => [symbol]             # See ansi color codes below
 style:      => [symbol]             # See ansi style codes below. Can accept multiple styles as an array
-justify:    => [center|ljust|rjust] # The type of justification to use
+justify:    => [center|left|right]  # The type of justification to use
 padding:    => [integer]            # The maximum string size to justify text in
 indent:     => [integer]            # The number of characters to indent
 newline:    => [boolean]            # True if you want a newline after the output

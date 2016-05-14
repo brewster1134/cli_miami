@@ -13,6 +13,9 @@ require './lib/cli_miami'
 # a = A.sk 'enter range', type: :range
 # a = A.sk 'enter range', type: :range, min: 4
 
+# MULTIPLE CHOICE
+# a = A.sk 'enter multiple choice', type: :multiple_choice, choices: ['option 1', 'option 2']
+
 # a = A.sk 'enter string', type: :string
 # a = A.sk 'enter symbol', type: :symbol
 

@@ -4,7 +4,7 @@ describe CliMiami::Error do
       CliMiami::TYPE_MAP.values.uniq.each do |type|
         case type
 
-        when :array
+        when :array, :multiple_choice
           value_type = [1, nil, :foo, '', (1..2)]
           value_string = '1, [EMPTY], foo, [EMPTY], and 1-2'
           allowed_values = '1-38'

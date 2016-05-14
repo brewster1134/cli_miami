@@ -52,6 +52,7 @@ class CliMiami
       newline: true,
       justify: :left,
       padding: 0,
+      preset: nil,
       regexp: //,
       style: [],
       type: :string

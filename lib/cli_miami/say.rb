@@ -37,7 +37,7 @@ class CliMiami::S
 private
 
   def initialize text, options
-    @text = text
+    @text = text.to_s
     @options = options
 
     # formatter methods

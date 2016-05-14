@@ -27,16 +27,16 @@ describe CliMiami::Validation do
       it_behaves_like 'an invalid type', :file, File.join(Dir.pwd, 'foo')
     end
 
-    describe 'FLOAT' do
-      it_behaves_like 'a valid type', :float, '2.0', 2.0
-      it_behaves_like 'a valid type', :float, '3', 3.0
-      it_behaves_like 'an invalid type', :float, 'foo'
-    end
-
     describe 'FIXNUM' do
       it_behaves_like 'a valid type', :fixnum, '3', 3
       it_behaves_like 'a valid type', :fixnum, '3.8', 3
       it_behaves_like 'an invalid type', :fixnum, 'foo'
+    end
+
+    describe 'FLOAT' do
+      it_behaves_like 'a valid type', :float, '2.0', 2.0
+      it_behaves_like 'a valid type', :float, '3', 3.0
+      it_behaves_like 'an invalid type', :float, 'foo'
     end
 
     describe 'RANGE' do
