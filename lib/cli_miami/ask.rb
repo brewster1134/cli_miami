@@ -182,7 +182,7 @@ private
           hash[key.to_sym] = request_until_valid value_options
 
           # update user
-          CliMiami::S.ay hash.to_s, :cli_miami_update
+          CliMiami::S.ay hash.to_cli_miami_string, :cli_miami_update
         end
 
         # set boolean so we know all required keys are set
@@ -208,7 +208,7 @@ private
         end
       end
 
-      CliMiami::S.ay hash.to_s, :cli_miami_update
+      CliMiami::S.ay hash.to_cli_miami_string, :cli_miami_update
     end
 
     hash

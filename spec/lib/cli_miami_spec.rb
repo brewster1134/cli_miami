@@ -1,6 +1,4 @@
 describe CliMiami do
-  subject { CliMiami }
-
   describe '.set_preset' do
     it 'should raise an error if invalid options' do
       expect { subject.set_preset(:foo, :bar) }.to raise_error ArgumentError
