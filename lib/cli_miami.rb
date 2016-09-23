@@ -35,15 +35,8 @@ end
 
 # i18n
 #
-# load yml locales included in the cli miami gem
-#   [PATH TO GEMS]/cli_miami/i18n/en.yml
 I18n.load_path += Dir["#{File.dirname(__FILE__)}/../i18n/*.yml"]
-# load locale in current directory named `i18n.yml`
-#   ./i18n.yml
-I18n.load_path += Dir['./i18n.yml']
-# load locales in the folder `i18n` in the current directory
-#   ./i18n/en.yml
-I18n.load_path += Dir['./i18n/*.yml']
+I18n.reload!
 
 # readline
 #
