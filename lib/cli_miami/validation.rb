@@ -111,14 +111,14 @@ private
   # validate the value is within the min and max values
   #
   def validate_length value, length, options
-    unless (options[:min]..options[:max]).cover? length
-      options[:value_length] = length
+    return if (options[:min]..options[:max]).cover? length
 
-      # replace empty values with i18n `empty` string
-      value = I18n.t('cli_miami.core.empty') if value.respond_to?(:empty?) && value.empty?
+    options[:value_length] = length
 
-      raise CliMiami::Error.new(value, options, :length).message
-    end
+    # replace empty values with i18n `empty` string
+    value = I18n.t('cli_miami.core.empty') if value.respond_to?(:empty?) && value.empty?
+
+    raise CliMiami::Error.new(value, options, :length).message
   end
 
   # validate that the value passes a regular expression
@@ -153,7 +153,7 @@ private
     validate_length float, float, options
   end
 
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def validate_hash hash, options
     hash.deep_symbolize_keys!
 
@@ -162,18 +162,17 @@ private
     # return if no value options are set
     value_options = options[:value_options]
     return unless value_options
+    return unless value_options[:keys]
 
     # validate required keys are set
-    if value_options[:keys]
-      missing_keys = Set.new(value_options[:keys].map(&:to_sym)) - Set.new(hash.keys)
-      value_options[:missing_values] = missing_keys.to_a.to_sentence
+    missing_keys = Set.new(value_options[:keys].map(&:to_sym)) - Set.new(hash.keys)
+    value_options[:missing_values] = missing_keys.to_a.to_sentence
 
-      unless missing_keys.empty?
-        raise CliMiami::Error.new(hash, options, :keys).message
-      end
+    unless missing_keys.empty?
+      raise CliMiami::Error.new(hash, options, :keys).message
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   def validate_multiple_choice selections, options
     validate_length selections, selections.length, options

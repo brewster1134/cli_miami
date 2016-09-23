@@ -24,12 +24,18 @@ class String
     method_string = method.to_s.dup
 
     if method_string.slice! 'cli_miami_'
-      preset = CliMiami.presets[method_string.to_sym]
+      method_symbol = method_string.to_sym
+      preset = CliMiami.presets[method_symbol] || {}
       options = preset.merge args[0] || {}
+
       CliMiami::S.ay self, options
     else
       super
     end
+  end
+
+  def respond_to_missing? method, _args
+    method =~ /^cli_miami_/ || super
   end
 end
 

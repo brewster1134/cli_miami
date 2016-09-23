@@ -67,13 +67,13 @@ private
 
   # Set foreground color
   def modify_text_color!
-    if @options[:color]
-      # if bright style is passed, use the bright color variation
-      @text = if @options[:style].delete :bright
-        @text.send "bright_#{@options[:color]}"
-      else
-        @text.send @options[:color]
-      end
+    return unless @options[:color]
+
+    # if bright style is passed, use the bright color variation
+    @text = if @options[:style].delete :bright
+      @text.send "bright_#{@options[:color]}"
+    else
+      @text.send @options[:color]
     end
   end
 

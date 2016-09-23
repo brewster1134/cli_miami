@@ -107,13 +107,13 @@ private
     i18n_string = keys.flatten.compact.each(&:to_s).join('.')
 
     # check if value exists, and translate it
-    if I18n.exists? i18n_string
-      # format description for i18n messages
-      if options[:description]
-        options[:description] = ' (' << options[:description] << ')'
-      end
+    return unless I18n.exists? i18n_string
 
-      I18n.t i18n_string, options
+    # format description for i18n messages
+    if options[:description]
+      options[:description] = ' (' << options[:description] << ')'
     end
+
+    I18n.t i18n_string, options
   end
 end
