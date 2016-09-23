@@ -1,4 +1,4 @@
-en:
+en: &en
   cli_miami:
     # CliMiami core library strings
     core:
@@ -40,3 +40,9 @@ en:
       range:
       string:
       symbol:
+
+# regional variations
+en_gb:
+  <<: *en
+en_us:
+  <<: *en

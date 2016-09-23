@@ -24,26 +24,25 @@ class String
     method_string = method.to_s.dup
 
     if method_string.slice! 'cli_miami_'
-      preset = CliMiami.presets[method_string.to_sym]
+      method_symbol = method_string.to_sym
+      preset = CliMiami.presets[method_symbol] || {}
       options = preset.merge args[0] || {}
+
       CliMiami::S.ay self, options
     else
       super
     end
   end
+
+  def respond_to_missing? method, _args
+    method =~ /^cli_miami_/ || super
+  end
 end
 
 # i18n
 #
-# load yml locales included in the cli miami gem
-#   [PATH TO GEMS]/cli_miami/i18n/en.yml
 I18n.load_path += Dir["#{File.dirname(__FILE__)}/../i18n/*.yml"]
-# load locale in current directory named `i18n.yml`
-#   ./i18n.yml
-I18n.load_path += Dir['./i18n.yml']
-# load locales in the folder `i18n` in the current directory
-#   ./i18n/en.yml
-I18n.load_path += Dir['./i18n/*.yml']
+I18n.reload!
 
 # readline
 #

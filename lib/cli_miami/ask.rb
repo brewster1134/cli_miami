@@ -45,7 +45,7 @@ private
   def request_type options
     send("request_#{options[:type]}", options)
   rescue
-    CliMiami::S.ay I18n.t('cli_miami.errors.type', options.merge(preset: :cli_miami_fail))
+    CliMiami::S.ay I18n.t('cli_miami.errors.type', type: options[:type]), options.merge(preset: :cli_miami_fail)
   end
 
   # for most types, a simple validation check is all that is needed
@@ -130,7 +130,9 @@ private
       # display options
       CliMiami::S.ay
       CliMiami::S.ay I18n.t('cli_miami.core.multiple_choice.prompt'), :cli_miami_instruction
-      options[:choices].each_with_index do |li, i|
+      options[:choices].to_a.each_with_index do |li, i|
+        li = li[1] if li.is_a? Array
+
         # show already selected choices with a different color
         choice_text = "#{(i + 1).to_s.rjust(3)}: #{li}"
         choice_text_color = selected_choice_indexes.include?(i) ? :black : :cyan
@@ -159,11 +161,22 @@ private
         end
       end
 
+      # get selected choice values
+      selected_choices = selected_choice_indexes.map do |i|
+        options[:choices].to_a[i]
+      end
+
+      # convert associate array back to hash
+      if options[:choices].is_a? Hash
+        selected_choices = Hash[*selected_choices.flatten]
+      end
+
+      # show user their selected choices
       # update user
       CliMiami::S.ay
       CliMiami::S.ay I18n.t('cli_miami.core.multiple_choice.selected_choices'), :cli_miami_instruction_sub
-      selected_choices = selected_choice_indexes.map{ |i| options[:choices][i] }
       selected_choices.each do |sc|
+        sc = sc[1] if sc.is_a? Array
         CliMiami::S.ay "• #{sc}", preset: :cli_miami_update, indent: 3
       end
     end

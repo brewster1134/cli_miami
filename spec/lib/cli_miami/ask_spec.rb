@@ -55,6 +55,12 @@ describe CliMiami::A do
   end
 
   describe 'MULTIPLE_CHOICE' do
+    it 'should allow a hash of choices' do
+      allow($stdin).to receive(:gets).and_return '2', '1', ''
+      ask = CliMiami::A.sk @q, type: :multiple_choice, choices: { one: 'option 1', two: 'option 2', three: 'option 3' }
+      expect(ask.value).to eq(two: 'option 2', one: 'option 1')
+    end
+
     it 'should allow a user to remove selections' do
       allow($stdin).to receive(:gets).and_return '1', '2', '1', ''
       ask = CliMiami::A.sk @q, type: :multiple_choice, choices: ['option 1', 'option 2', 'option 3']

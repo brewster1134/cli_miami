@@ -14,20 +14,23 @@ Gem::Specification.new do |s|
 
   # VERSIONS
   #
-  s.version = '1.0.5.pre'
+  s.version = '1.0.6.pre'
 
   s.required_ruby_version = Gem::Requirement.new '>= 2.0.0p247'
 
-  s.add_runtime_dependency 'activesupport', '~> 4.2'
-  s.add_runtime_dependency 'i18n', '~> 0.7'
-  s.add_runtime_dependency 'term-ansicolor', '~> 1.3'
+  s.add_runtime_dependency 'activesupport', '4.2.7.1'
+  s.add_runtime_dependency 'i18n'
+  s.add_runtime_dependency 'term-ansicolor'
 
-  s.add_development_dependency 'coveralls', '~> 0.7'
-  s.add_development_dependency 'guard', '~> 2.6'
-  s.add_development_dependency 'guard-bundler', '~> 2.1'
-  s.add_development_dependency 'guard-rubocop', '~> 1.2'
-  s.add_development_dependency 'guard-rspec', '~> 4.3'
-  s.add_development_dependency 'listen', '~> 3.0.7', '>= 3.0.7'
-  s.add_development_dependency 'rspec', '~> 3.1'
-  s.add_development_dependency 'terminal-notifier-guard', '~> 1.5'
+  s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-bundler'
+  s.add_development_dependency 'guard-rubocop'
+  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'listen', '3.0.8'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'ruby_dep', '1.3.1'
+  s.add_development_dependency 'terminal-notifier'
+  s.add_development_dependency 'terminal-notifier-guard'
+  s.add_development_dependency 'yard'
 end
