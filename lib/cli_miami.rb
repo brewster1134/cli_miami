@@ -60,11 +60,6 @@ class FalseClass; include Boolean; end
 # create Cli Miami namespace and load library
 #
 module CliMiami
-  require 'cli_miami/ask'
-  require 'cli_miami/error'
-  require 'cli_miami/say'
-  require 'cli_miami/validation'
-
   BOOLEAN_TRUE_VALUES = %w(true t yes y).freeze
   BOOLEAN_FALSE_VALUES = %w(false f no n).freeze
 
@@ -201,4 +196,14 @@ module CliMiami
     options
   end
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+
+  def self.version
+    CliMiami::VERSION
+  end
 end
+
+require 'cli_miami/ask'
+require 'cli_miami/error'
+require 'cli_miami/say'
+require 'cli_miami/validation'
+require 'cli_miami/version'
