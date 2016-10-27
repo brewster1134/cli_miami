@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.author      = 'Ryan Brewster'
   s.date        = Date.today.to_s
   s.email       = 'brewster1134@gmail.com'
-  s.files       = Dir['{bin,i18n,lib}/**/*', 'README.md']
+  s.files       = Dir['{bin,i18n,lib}/**/*', 'CHANGELOG.md', 'README.md']
   s.homepage    = 'https://github.com/brewster1134/cli-miami'
   s.license     = 'WTFPL'
   s.name        = 'cli_miami'

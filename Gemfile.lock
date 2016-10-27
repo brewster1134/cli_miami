@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cli_miami (1.0.9.pre)
+    cli_miami (1.0.10.pre)
       activesupport (= 4.2.7.1)
       i18n
       recursive-open-struct
