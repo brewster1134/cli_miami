@@ -204,6 +204,6 @@ end
 
 require 'cli_miami/ask'
 require 'cli_miami/error'
+require 'cli_miami/metadata'
 require 'cli_miami/say'
 require 'cli_miami/validation'
-require 'cli_miami/version'

@@ -3,4 +3,27 @@ install: bundle install
 script: bundle exec rspec
 rvm:
   - 2.0.0-p247
-  - 2.3.0
+  - 2.3.1
+deploy:
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure:
+    file:
+      - bin/cli-miami
+      - i18n/*.yml
+      - lib/**/*.rb
+      - README.md
+    on:
+      repo: brewster1134/cli-miami
+      tags: true
+  - provider: rubygems
+    gem: cli-miami
+    gemspec: cli-miami.gemspec
+    skip_cleanup: true
+    api_key:
+      secure:
+    on:
+      branch: master
+      repo: brewster1134/cli-miami
+      tags: true

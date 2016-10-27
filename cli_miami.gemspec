@@ -1,17 +1,17 @@
 # coding: utf-8
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 require 'date'
-require 'cli_miami/version'
+require 'cli_miami/metadata'
 
 Gem::Specification.new do |s|
   s.author      = 'Ryan Brewster'
   s.date        = Date.today.to_s
   s.email       = 'brewster1134@gmail.com'
   s.files       = Dir['{bin,i18n,lib}/**/*', 'README.md']
-  s.homepage    = 'https://github.com/brewster1134/CLI-Miami'
+  s.homepage    = 'https://github.com/brewster1134/cli-miami'
   s.license     = 'WTFPL'
   s.name        = 'cli_miami'
-  s.summary     = 'A feature rich alternative for `gets` and `puts` for your cli interface'
+  s.summary     = CliMiami::SUMMARY
   s.test_files  = Dir['spec/**/*']
   s.version     = CliMiami::VERSION
 
@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'activesupport', '4.2.7.1'
   s.add_runtime_dependency 'i18n'
-  s.add_runtime_dependency 'term-ansicolor'
+  s.add_runtime_dependency 'recursive-open-struct'
+  s.add_runtime_dependency 'thor'
 
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'guard'
@@ -31,5 +32,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ruby_dep', '1.3.1'
   s.add_development_dependency 'terminal-notifier'
   s.add_development_dependency 'terminal-notifier-guard'
-  s.add_development_dependency 'yard'
 end
