@@ -4,7 +4,7 @@ guard :bundler do
   watch 'Gemfile'
 end
 
-guard :rubocop, cli: '-D' do
+guard :rubocop, all_on_start: false, cli: '-D' do
   watch(/(.+\.rb)$/)                  { |m| m[0] }
   watch(%r{(?:.+/)?\.rubocop\.yml$})  { |m| File.dirname(m[0]) }
 end
