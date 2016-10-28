@@ -1,7 +1,7 @@
 #
 # Build custom i18n error messages
 #
-class CliMiami::Error
+class CliMiami::Error < StandardError
   attr_reader :message
 
 private

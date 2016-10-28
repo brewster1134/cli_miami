@@ -1,5 +1,5 @@
 # coding: utf-8
-$LOAD_PATH << File.expand_path('../lib', __FILE__)
+$LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
 require 'date'
 require 'cli_miami/metadata'
 
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.date        = Date.today.to_s
   s.email       = 'brewster1134@gmail.com'
   s.files       = Dir['{bin,i18n,lib}/**/*', 'CHANGELOG.md', 'README.md']
-  s.homepage    = 'https://github.com/brewster1134/cli-miami'
+  s.homepage    = 'https://github.com/brewster1134/cli_miami'
   s.license     = 'WTFPL'
   s.name        = 'cli_miami'
   s.summary     = CliMiami::SUMMARY

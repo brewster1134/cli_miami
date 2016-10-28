@@ -3,7 +3,9 @@ Coveralls.wear!
 require 'cli_miami'
 require 'i18n'
 
-I18n.load_path += Dir[File.expand_path("#{File.dirname(__FILE__)}/fixtures/i18n.yml")]
+I18n.load_path << File.expand_path(File.join('spec', 'fixtures', 'i18n.yml'))
+I18n.locale = 'spec'
+I18n.reload!
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

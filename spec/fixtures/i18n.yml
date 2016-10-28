@@ -37,3 +37,7 @@ en:
 
       symbol:
         spec: "symbol: %{value} - %{allowed_values}"
+
+spec:
+  foo:
+    bar: This %{foo} is a %{bar}

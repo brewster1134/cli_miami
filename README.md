@@ -1,10 +1,10 @@
 [![gem version](https://badge.fury.io/rb/cli_miami.svg)](https://badge.fury.io/rb/cli_miami)
-[![dependencies](https://gemnasium.com/brewster1134/CLI-Miami.svg)](https://gemnasium.com/brewster1134/CLI-Miami)
-[![docs](http://inch-ci.org/github/brewster1134/CLI-Miami.svg?branch=master)](http://inch-ci.org/github/brewster1134/CLI-Miami)
-[![build](https://travis-ci.org/brewster1134/CLI-Miami.svg?branch=master)](https://travis-ci.org/brewster1134/CLI-Miami)
-[![coverage](https://coveralls.io/repos/brewster1134/CLI-Miami/badge.svg?branch=master)](https://coveralls.io/r/brewster1134/CLI-Miami?branch=master)
-[![code climate](https://codeclimate.com/github/brewster1134/CLI-Miami/badges/gpa.svg)](https://codeclimate.com/github/brewster1134/CLI-Miami)
-[![omniref](https://www.omniref.com/github/brewster1134/CLI-Miami.png)](https://www.omniref.com/github/brewster1134/CLI-Miami)
+[![dependencies](https://gemnasium.com/brewster1134/cli_miami.svg)](https://gemnasium.com/brewster1134/cli_miami)
+[![docs](http://inch-ci.org/github/brewster1134/cli_miami.svg?branch=master)](http://inch-ci.org/github/brewster1134/cli_miami)
+[![build](https://travis-ci.org/brewster1134/cli_miami.svg?branch=master)](https://travis-ci.org/brewster1134/cli_miami)
+[![coverage](https://coveralls.io/repos/brewster1134/cli_miami/badge.svg?branch=master)](https://coveralls.io/r/brewster1134/cli_miami?branch=master)
+[![code climate](https://codeclimate.com/github/brewster1134/cli_miami/badges/gpa.svg)](https://codeclimate.com/github/brewster1134/cli_miami)
+[![omniref](https://www.omniref.com/github/brewster1134/cli_miami.png)](https://www.omniref.com/github/brewster1134/cli_miami)
 
 # CLI Miami
 A feature rich alternative for `gets` and `puts` for your cli interface
@@ -85,7 +85,7 @@ overwrite:  => [boolean]            # True if you want the next line to overwrit
 ### Development & Testing
 
 ```shell
-yuyi -m https://raw.githubusercontent.com/brewster1134/CLI-Miami/master/yuyi_menu
+yuyi -m https://raw.githubusercontent.com/brewster1134/cli_miami/master/yuyi_menu
 bundle install
 bundle exec guard
 ```

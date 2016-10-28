@@ -1,5 +1,4 @@
-#
-# load dependencies
+# Load dependencies
 #
 require 'active_support/core_ext/hash/conversions'
 require 'active_support/core_ext/hash/keys'
@@ -7,7 +6,7 @@ require 'active_support/core_ext/string/inflections'
 require 'i18n'
 require 'readline'
 
-# open Hash class
+# Add custom Hash methods
 #
 class Hash
   def to_cli_miami_string
@@ -17,7 +16,7 @@ class Hash
   end
 end
 
-# open String class
+# Add custom String methods
 #
 class String
   def method_missing method, *args
@@ -39,17 +38,18 @@ class String
   end
 end
 
-# i18n
+# I18n
 #
-I18n.load_path += Dir["#{File.dirname(__FILE__)}/../i18n/*.yml"]
+I18n.load_path += Dir[File.expand_path(File.join('i18n', '*.yml'))]
+I18n.locale = ENV['LANG'].split('.').first.downcase
 I18n.reload!
 
-# readline
+# Readline
 #
 Readline.completion_append_character = '/'
 
-# creates Boolean type that true/false inherit
-# this allows true/false to respond to a single Boolean class to check for
+# Creates Boolean type that true/false inherit
+# This allows true/false to respond to a single Boolean class to check for
 #
 # rubocop:disable Style/Documentation
 module Boolean; end
@@ -57,7 +57,7 @@ class TrueClass; include Boolean; end
 class FalseClass; include Boolean; end
 # rubocop:enable Style/Documentation
 
-# create Cli Miami namespace and load library
+# Create Cli Miami namespace and load library
 #
 module CliMiami
   BOOLEAN_TRUE_VALUES = %w(true t yes y).freeze
@@ -202,6 +202,7 @@ module CliMiami
   end
 end
 
+# Load Cli Miami library
 require 'cli_miami/ask'
 require 'cli_miami/error'
 require 'cli_miami/metadata'
