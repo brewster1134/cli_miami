@@ -12,19 +12,20 @@ class CliMiami::S
   # S.ay API method
   #
   # @param options [Symbol or Hash] options can be preset symbol, or a hash of options.
+  # @todo overwrite is unpublished and beta. it has issues under certain use cases
   #
   # By preset [Symbol[...
   # [symbol]  Uses defined preset name
   #
   # By options [Hash]...
-  # color:        => [symbol]             See README for ansi color codes
-  # bgcolor:      => [symbol]             See README for ansi color codes
-  # style:        => [symbol]             See README for ansi style codes
-  # justify:      => [center|left|right]  The type of justification to use
-  # padding:      => [integer]            The maximum string size to justify text in
-  # indent:       => [integer]            The number of characters to indent
-  # newline:      => [boolean]            True if you want a newline after the output
-  # overwrite:    => [boolean]            True if you want the next line to overwrite the current line
+  # color:      [symbol]             See README for ansi color codes
+  # bgcolor:    [symbol]             See README for ansi color codes
+  # style:      [symbol]             See README for ansi style codes
+  # justify:    [center|left|right]  The type of justification to use
+  # padding:    [integer]            The maximum string size to justify text in
+  # indent:     [integer]            The number of characters to indent
+  # newline:    [boolean]            True if you want a newline after the output
+  # overwrite:  [boolean]            True if you want the next line to overwrite the current line
   #
   # @return
   #

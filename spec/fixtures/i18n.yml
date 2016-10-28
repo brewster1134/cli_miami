@@ -1,5 +1,7 @@
-en:
+spec:
   cli_miami:
+    core:
+      empty: 'empty'
     errors:
       spec: generic error
 
@@ -37,7 +39,5 @@ en:
 
       symbol:
         spec: "symbol: %{value} - %{allowed_values}"
-
-spec:
   foo:
     bar: This %{foo} is a %{bar}

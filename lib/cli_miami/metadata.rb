@@ -1,4 +1,4 @@
 module CliMiami
-  VERSION = '1.0.10.pre'.freeze
-  SUMMARY = 'A feature rich alternative for gets and puts for your command line tool'.freeze
+  VERSION = '2.0.0.pre'.freeze
+  SUMMARY = 'A colorful & feature-rich alternative to gets & puts for your command line app'.freeze
 end

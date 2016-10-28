@@ -1,9 +1,10 @@
 PATH
   remote: .
   specs:
-    cli_miami (1.0.10.pre)
+    cli_miami (2.0.0.pre)
       activesupport (= 4.2.7.1)
       i18n
+      rb-readline
       recursive-open-struct
       thor
 
@@ -72,6 +73,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    rb-readline (0.5.3)
     recursive-open-struct (1.0.1)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)

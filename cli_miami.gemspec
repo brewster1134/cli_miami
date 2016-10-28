@@ -3,6 +3,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
 require 'date'
 require 'cli_miami/metadata'
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |s|
   s.author      = 'Ryan Brewster'
   s.date        = Date.today.to_s
@@ -19,6 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'activesupport', '4.2.7.1'
   s.add_runtime_dependency 'i18n'
+  s.add_runtime_dependency 'rb-readline'
   s.add_runtime_dependency 'recursive-open-struct'
   s.add_runtime_dependency 'thor'
 
@@ -33,3 +35,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'terminal-notifier'
   s.add_development_dependency 'terminal-notifier-guard'
 end
+# rubocop:enable Metrics/BlockLength
