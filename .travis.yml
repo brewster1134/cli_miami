@@ -21,7 +21,7 @@ deploy:
       tags: true
   - provider: rubygems
     gem: cli_miami
-    gem_spec: cli_miami.gemspec
+    gemspec: cli_miami.gemspec
     skip_cleanup: true
     api_key:
       secure: plfxLBk1hK0y4EAlsTSLLmBXoVf4OIhKhh8sE1YrhEYn0JC5kQ06zcN4jVW79F6qHKnDWTHYrd/PIUZmytVuPBmUw/6qBKNKzsrvlcQaXJlWTMIjx089e6yvsQFRFycpovI85o7/+TpRZrPG6b//zqKgTcbta1NwOTIvaHaXAe0=
