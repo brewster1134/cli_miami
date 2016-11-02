@@ -69,16 +69,10 @@ RSpec.configure do |config|
   end
 
   config.before do
-    allow($stdout).to receive(:print)
-    allow($stdout).to receive(:puts)
-
-    # uncomment the following lines to enable debugging
-    # allow($stdout).to receive(:print).and_call_original
-    # allow($stdout).to receive(:puts).and_call_original
+    allow_any_instance_of(CliMiami::S).to receive(:ay)
   end
 
   config.after do
-    allow($stdout).to receive(:print).and_call_original
-    allow($stdout).to receive(:puts).and_call_original
+    allow_any_instance_of(CliMiami::S).to receive(:ay).and_call_original
   end
 end
