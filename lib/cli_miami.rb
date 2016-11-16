@@ -40,7 +40,7 @@ end
 
 # I18n
 #
-I18n.load_path += Dir[File.expand_path(File.join('i18n', '*.yml'))]
+I18n.load_path += Dir[File.join('i18n', '*.yml')]
 I18n.locale = ENV['LANG'].split('.').first.downcase
 I18n.reload!
 

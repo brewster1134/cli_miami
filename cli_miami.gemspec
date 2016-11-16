@@ -1,5 +1,5 @@
 # coding: utf-8
-$LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'date'
 require 'cli_miami/metadata'
 
@@ -16,23 +16,21 @@ Gem::Specification.new do |s|
   s.test_files  = Dir['spec/**/*']
   s.version     = CliMiami::VERSION
 
-  s.required_ruby_version = Gem::Requirement.new '>= 2.0.0p247'
+  s.required_ruby_version = Gem::Requirement.new '>= 2.1.0'
 
-  s.add_runtime_dependency 'activesupport', '4.2.7.1'
-  s.add_runtime_dependency 'i18n'
-  s.add_runtime_dependency 'rb-readline'
-  s.add_runtime_dependency 'recursive-open-struct'
-  s.add_runtime_dependency 'thor'
+  s.add_runtime_dependency 'activesupport', '>0'
+  s.add_runtime_dependency 'i18n', '>0'
+  s.add_runtime_dependency 'rb-readline', '>0'
+  s.add_runtime_dependency 'recursive-open-struct', '>0'
+  s.add_runtime_dependency 'thor', '>0'
 
-  s.add_development_dependency 'coveralls'
-  s.add_development_dependency 'guard'
-  s.add_development_dependency 'guard-bundler'
-  s.add_development_dependency 'guard-rubocop'
-  s.add_development_dependency 'guard-rspec'
-  s.add_development_dependency 'listen', '3.0.8'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'ruby_dep', '1.3.1'
-  s.add_development_dependency 'terminal-notifier'
-  s.add_development_dependency 'terminal-notifier-guard'
+  s.add_development_dependency 'coveralls', '>0'
+  s.add_development_dependency 'guard', '>0'
+  s.add_development_dependency 'guard-bundler', '>0'
+  s.add_development_dependency 'guard-rubocop', '>0'
+  s.add_development_dependency 'guard-rspec', '>0'
+  s.add_development_dependency 'rspec', '>0'
+  s.add_development_dependency 'terminal-notifier', '>0'
+  s.add_development_dependency 'terminal-notifier-guard', '>0'
 end
 # rubocop:enable Metrics/BlockLength

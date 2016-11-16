@@ -2,7 +2,7 @@ require 'coveralls'
 Coveralls.wear!
 require 'cli_miami'
 
-I18n.load_path << File.expand_path(File.join('spec', 'fixtures', 'i18n.yml'))
+I18n.load_path += Dir[File.join('spec', 'fixtures', 'i18n.yml')]
 I18n.reload!
 I18n.locale = 'spec'
 
