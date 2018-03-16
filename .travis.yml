@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.1.0
+  - 2.2.2
   - 2.3.1
 before_install:
   - gem update --system
@@ -17,7 +17,7 @@ deploy:
       secure: oMOVrrP3KeQZJHc3jxoNzfQkbiAZUsbIx6JaU6XDsNcJJf7miYLbt1t+UPeJGAK73tqCU4IioMVJvyPY5/lyZx+GdyFMqhATHm7RkNMHo3s47ejJd+Je3WmxyrjdBVIgCpk3Q+rrW2SLZ2siyAzu7E8uUxUaCHHRiBiRIu92kDg=
     on:
       repo: brewster1134/cli_miami
-      ruby: 2.0.1
+      ruby: 2.2.2
       tags: true
   - provider: rubygems
     gem: cli_miami
@@ -28,5 +28,5 @@ deploy:
     on:
       branch: master
       repo: brewster1134/cli_miami
-      ruby: 2.0.1
+      ruby: 2.2.2
       tags: true
